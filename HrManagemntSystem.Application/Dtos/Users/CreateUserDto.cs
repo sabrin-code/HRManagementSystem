@@ -6,16 +6,38 @@ using System.Threading.Tasks;
 
 namespace HrManagemntSystem.Application.Dtos.Users
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class CreateUserDto
     {
-        public string Password { get; set; }
-        public string ConfirmPassword { get; set; }
+        [Required]
+        [StringLength(50)]
         public string Name { get; set; }
-        public string Email { get; set; }
+
+        [Required]
+        [StringLength(50)]
         public string Surname { get; set; }
-        public string Username { get; set; }
+
+        [StringLength(50)]
         public string MiddleName { get; set; }
-        public int Id { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Username { get; set; }
+
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(100, MinimumLength = 6)]
+        public string Password { get; set; }
+
+        [Required]
+        [Compare("Password", ErrorMessage = "Şifrələr uyğun deyil.")]
+        public string ConfirmPassword { get; set; }
+
         public int EmployeeId { get; set; }
     }
+
 }

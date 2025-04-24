@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HrManagemntSystem.Application.Repositories
+namespace HrManagemntSystem.Application.Interfaces.Repositories.BaseRepository
 {
     public interface ICRUDRepository<T> : IRepository<T> where T : class, IBaseEntity 
     {

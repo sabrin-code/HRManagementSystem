@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HrManagemntSystem.Application.Repositories
+namespace HrManagemntSystem.Application.Interfaces.Repositories.BaseRepository
 {
     public interface IRepository<T> where T : class,IBaseEntity 
     {

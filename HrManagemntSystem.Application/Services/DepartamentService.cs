@@ -43,7 +43,7 @@ namespace HrManagementSystem.Persistence.Services
         {
             var mapdata=_mapper.Map<DepartamentEntity>(entity); 
              await CreateAsync(mapdata);
-            await SaveAsync();
+            _unitOfWork.Commit();
             return true;
         }
 
@@ -55,13 +55,15 @@ namespace HrManagementSystem.Persistence.Services
                 data.IsDeleted=true;
             }
             await SaveAsync();
+            _unitOfWork.Commit();
+
             return true;
         }
         public async Task<bool>UpdateDepartament(DepartamentDto entity)
         {
             var mapdata=_mapper.Map<DepartamentEntity>(entity);    
              await  UpdateAsync(mapdata);
-            await SaveAsync();
+            _unitOfWork.Commit();
             return true;
         }  
 

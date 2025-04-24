@@ -25,7 +25,7 @@ namespace HrManagementSystem.Persistence.Services
         {
             var mapdata = _mapper.Map<StatusEntity>(entity);
              await CreateAsync(mapdata);
-            await SaveAsync();
+            _unitOfWork.Commit();
             return true;
         }
     }

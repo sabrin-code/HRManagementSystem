@@ -1,4 +1,5 @@
-﻿using HrManagemntSystem.Application.Dtos;
+﻿using HrManagementSystem.Domain.Entities.Identity;
+using HrManagemntSystem.Application.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace HrManagemntSystem.Application.Abstraction.Token
 {
     public interface ITokenHandler
     {
-        AccessTokenDto CreateAccessToken(int min);
+        AccessTokenDto CreateAccessToken(AppUserEntity user);
     }
 }

@@ -1,23 +1,39 @@
 ﻿using HrManagemntSystem.Application.Features.Results;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace HrManagemntSystem.Application.Dtos
 {
-    public class CreateUserRequest:IRequest<CreateUserResult>
+    public class CreateUserRequest : IRequest<CreateUserResult>
     {
-        public string Password { get; set; }
-        public string ConfirmPassword { get; set; }
+        [Required]
+        [StringLength(50)]
         public string Name { get; set; }
-        public string Email { get; set; }
+
+        [Required]
+        [StringLength(50)]
         public string Surname { get; set; }
-        public string Username { get; set; }
+
+        [StringLength(50)]
         public string MiddleName { get; set; }
-        public int Id { get; set; }
-        public int EmployeeId { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Username { get; set; }
+
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(100, MinimumLength = 6)]
+        public string Password { get; set; }
+
+        [Required]
+        [Compare("Password", ErrorMessage = "Şifrələr uyğun deyil.")]
+        public string ConfirmPassword { get; set; }
+
+        // Əgər user müəyyən işçiyə bağlı olacaqsa
+        public int? EmployeeId { get; set; }
     }
 }

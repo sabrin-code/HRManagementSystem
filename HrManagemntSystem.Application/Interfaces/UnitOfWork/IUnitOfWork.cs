@@ -1,5 +1,5 @@
 ﻿using HrManagementSystem.Persistence.Interfaces.Base;
-using HrManagemntSystem.Application.Repositories;
+using HrManagemntSystem.Application.Interfaces.Repositories.BaseRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;

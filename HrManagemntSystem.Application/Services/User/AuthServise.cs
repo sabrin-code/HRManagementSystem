@@ -37,7 +37,7 @@ namespace HrManagementSystem.Persistence.Services.User
             SignInResult result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
             if (result.Succeeded)
             {
-                AccessTokenDto token = _handler.CreateAccessToken(3);
+                AccessTokenDto token = _handler.CreateAccessToken(user);
                 return new()
                 {
                     Token=token,

@@ -1,7 +1,7 @@
 ﻿using HrManagementSystem.Persistence.Interfaces.Base;
 using HrManagementSystem.Persistence.Interfaces.Services;
+using HrManagemntSystem.Application.Interfaces.Repositories.BaseRepository;
 using HrManagemntSystem.Application.Interfaces.UnitOfWork;
-using HrManagemntSystem.Application.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;

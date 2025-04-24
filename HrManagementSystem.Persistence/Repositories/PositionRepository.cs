@@ -1,6 +1,6 @@
 ﻿using HrManagementSystem.Domain.Entities;
 using HrManagementSystem.Persistence.Context;
-using HrManagemntSystem.Application.Repositories;
+using HrManagemntSystem.Application.Interfaces.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;

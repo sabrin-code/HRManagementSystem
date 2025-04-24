@@ -11,10 +11,7 @@ namespace HrManagementSystem.Domain.Entities.Identity
 {
     public class AppUserRoleEntity: IdentityUserRole<int>, IBaseEntity
     {
-        //public int UserId { get; set; }
-        //public virtual AppUserEntity User { get; set; }
-        //public int RoleId { get; set; }
-        //public virtual AppRoleEntity Role { get; set; }
+       
         public DateTime CreateDate { get; set; }
         [MaxLength(255)]
         public string Description { get; set; }

@@ -39,7 +39,7 @@ namespace HrManagementSystem.Persistence.Services.User
                     addRoleIds
                     .ForEach(x => userRoleEntity.Add(new AppUserRoleEntity { RoleId = x, UserId = userId }));
                     await AddRangeAsync(userRoleEntity);
-                    await SaveAsync();
+                    _unitOfWork.Commit();
                 }
             }
             catch

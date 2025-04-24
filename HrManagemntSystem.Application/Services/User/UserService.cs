@@ -19,36 +19,45 @@ namespace HrManagementSystem.Persistence.Services.User
         }
         public async Task<CreateUserResponseDto> CreateUser(CreateUserDto request)
         {
-            IdentityResult result = await _userManager.CreateAsync(new()
+            if (request.Password != request.ConfirmPassword)
             {
-                UserName=request.Username,
-                Id=request.Id,
+                return new()
+                {
+                    succcess = false,
+                    message = "Şifrələr uyğun deyil"
+                };
+            }
+
+            var user = new AppUserEntity
+            {
+                UserName = request.Username,
                 Name = request.Name,
                 Surname = request.Surname,
-                Email=request.Email,
-                MiddleName=request.MiddleName,
-                EmployeeId=request.EmployeeId,  
-                
-            }, request.Password);
+                Email = request.Email,
+                MiddleName = request.MiddleName,
+                EmployeeId = request.EmployeeId,
+            };
+
+            IdentityResult result = await _userManager.CreateAsync(user, request.Password);
+
             if (result.Succeeded)
             {
                 return new()
                 {
                     succcess = true,
-                    message ="Success"
+                    message = "İstifadəçi uğurla yaradıldı"
                 };
             }
             else
             {
+                string errors = string.Join(" | ", result.Errors.Select(e => e.Description));
                 return new()
                 {
-                    succcess= false,
-                    message ="UnSuccess"
+                    succcess = false,
+                    message = $"Xəta baş verdi: {errors}"
                 };
             }
-
         }
 
-    }
 
-}
+    }

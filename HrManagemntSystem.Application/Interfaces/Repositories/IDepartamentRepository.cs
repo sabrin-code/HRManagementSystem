@@ -1,11 +1,12 @@
 ﻿using HrManagementSystem.Domain.Entities;
+using HrManagemntSystem.Application.Interfaces.Repositories.BaseRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HrManagemntSystem.Application.Repositories
+namespace HrManagemntSystem.Application.Interfaces.Repositories
 {
     public interface IDepartamentRepository:ICRUDRepository<DepartamentEntity>
     {

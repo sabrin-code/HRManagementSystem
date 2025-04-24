@@ -1,7 +1,7 @@
 ﻿using HrManagementSystem.Domain.Entities.Common;
 using HrManagementSystem.Persistence.Context;
 using HrManagementSystem.Persistence.Interfaces.Base;
-using HrManagemntSystem.Application.Repositories;
+using HrManagemntSystem.Application.Interfaces.Repositories.BaseRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;

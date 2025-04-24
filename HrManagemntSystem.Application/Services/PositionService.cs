@@ -43,7 +43,7 @@ namespace HrManagementSystem.Persistence.Services
         {
             var mapdata = _mapper.Map<PositionEntity>(entity);
              await CreateAsync(mapdata);
-             await SaveAsync();
+             _unitOfWork.Commit ();
             return true;    
         }
 
@@ -54,14 +54,14 @@ namespace HrManagementSystem.Persistence.Services
             {
                 data.IsDeleted=true;
             }
-           await  SaveAsync();
+           _unitOfWork.Commit   ();
             return true;
         }
         public async Task<bool> UpdatePosition(PositionDto entity)
         {
             var mapdata = _mapper.Map<PositionEntity>(entity);
              await UpdateAsync(mapdata);
-            await SaveAsync();
+            _unitOfWork.Commit  ();
             return true;
         }
 

@@ -12,70 +12,69 @@ using System.Threading.Tasks;
 
 namespace HrManagementSystem.Persistence.Services
 {
-    public class VacationDaysService:BaseService<VacationDaysEntity>,IVacancyDaysService
+    public class EmployeeService:BaseService<EmployeeEntity>,IEmployeeService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public VacationDaysService(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork)
+        public EmployeeService(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork)
         {
             _unitOfWork=unitOfWork;
             _mapper=mapper;
 
         }
-
-      
-
-        public List<VacancyDaysDto> GetAllVacancyDays()
+        public List<EmployeeDto> GetAllEmployee()
         {
             var data = GetAll().Where(x => x.IsDeleted==false).ToList();
-            return _mapper.Map<List<VacancyDaysDto>>(data);
+            return _mapper.Map<List<EmployeeDto>>(data);
         }
 
-        public async Task<VacancyDaysDto> FindVacancyDaysById(int id)
+        public async Task<EmployeeDto> FindEmployeeById(int id)
         {
 
             var result = await FindByIdAsync(id);
 
             if (result==null)
             {
-                throw new Exception("Data is not found");
+                throw new Exception("Isci tapilmadi");
             }
-            return _mapper.Map<VacancyDaysDto>(result);
+            return _mapper.Map<EmployeeDto>(result);
         }
-        public async Task<bool> AddVacancyDays(VacancyDaysDto entity)
+        public async Task<bool> AddEmployee(EmployeeDto entity)
         {
-            var mapdata = _mapper.Map<VacationDaysEntity>(entity);
+            var mapdata = _mapper.Map<EmployeeEntity>(entity);
              await CreateAsync(mapdata);
-            await SaveAsync();
+            _unitOfWork.Commit();
             return true;
         }
 
-        public async Task<bool> DeleteVacancyDaysById(int id)
+        public async Task<bool> DeleteEmployeeById(int id)
         {
             var data = await FindByIdAsync(id);
             if (data.IsDeleted==false)
             {
                 data.IsDeleted=true;
             }
-           await  SaveAsync();
+            _unitOfWork.Commit();
             return true;
         }
-        public async Task<bool> UpdateVacancyDays(VacancyDaysDto entity)
+        public async Task<bool> UpdateEmployee(EmployeeDto entity)
         {
-            var mapdata = _mapper.Map<VacationDaysEntity>(entity);
+            var mapdata = _mapper.Map<EmployeeEntity>(entity);
              await UpdateAsync(mapdata);
-            await SaveAsync();
+            _unitOfWork.Commit();
             return true;
         }
-
-        public async Task<VacancyDaysDto> FindDayByPositionId(int positionId)
+        public async Task<EmployeeDto>FindEmployeeByPositionId(int positionId)
         {
-            var data = Find(x => x.Id==positionId);
+            var data= Find(x=>x.PositionId==positionId);
             if (data==null)
             {
-                throw new Exception("Data is not found");
+                throw new Exception("Isci tapilmadi");
             }
-            return _mapper.Map<VacancyDaysDto>(data);
-        }
+            return _mapper.Map<EmployeeDto>(data);
+        } 
+
+
+
     }
 }
